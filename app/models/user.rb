@@ -2,10 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  # Use this before callback to set up User authentication_token.
-  before_save :ensure_authentication_token
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # If the user has no authentication_token, generate one.
   def ensure_authentication_token
