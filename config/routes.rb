@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: {registrations: 'registrations', sessions: 'sessions', confirmations: 'confirmations'}, defaults: {format: :json}
+  devise_for :users, controllers: {registrations: 'registrations', sessions: 'sessions', confirmations: 'confirmations', passwords: 'passwords'}, defaults: {format: :json}
   devise_scope :user do
     get '/users/confirmation' => 'confirmations#show'
     get '/users/success' => 'confirmations#success'
     get '/users/error' => 'confirmations#error'
+    get '/users/password/edit' => 'passwords#edit'
+    put '/users/password/update' => 'passwords#update'
+    get '/users/password/success' => 'passwords#success'
+    get '/users/password/error' => 'passwords#error'
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
